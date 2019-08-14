@@ -1,0 +1,16 @@
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.BLL\obj\Debug\Polyclinic.BLL.csprojResolveAssemblyReference.cache
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.BLL\bin\Debug\Polyclinic.BLL.dll
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.BLL\bin\Debug\Polyclinic.BLL.pdb
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.BLL\bin\Debug\AutoMapper.dll
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.BLL\bin\Debug\Ninject.dll
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.BLL\bin\Debug\Polyclinic.DAL.dll
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.BLL\bin\Debug\System.ValueTuple.dll
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.BLL\bin\Debug\EntityFramework.dll
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.BLL\bin\Debug\Polyclinic.DAL.pdb
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.BLL\bin\Debug\AutoMapper.pdb
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.BLL\bin\Debug\AutoMapper.xml
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.BLL\bin\Debug\Ninject.xml
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.BLL\bin\Debug\System.ValueTuple.xml
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.BLL\bin\Debug\EntityFramework.xml
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.BLL\obj\Debug\Polyclinic.BLL.dll
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.BLL\obj\Debug\Polyclinic.BLL.pdb

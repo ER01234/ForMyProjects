@@ -1,0 +1,10 @@
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.DAL\bin\Debug\Polyclinic.DAL.dll.config
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.DAL\bin\Debug\Polyclinic.DAL.dll
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.DAL\bin\Debug\Polyclinic.DAL.pdb
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.DAL\bin\Debug\EntityFramework.dll
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.DAL\bin\Debug\EntityFramework.SqlServer.dll
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.DAL\bin\Debug\EntityFramework.xml
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.DAL\bin\Debug\EntityFramework.SqlServer.xml
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.DAL\obj\Debug\Polyclinic.DAL.csprojResolveAssemblyReference.cache
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.DAL\obj\Debug\Polyclinic.DAL.dll
+E:\ASP.Net\Дипломный проект\Polyclinic\Polyclinic.DAL\obj\Debug\Polyclinic.DAL.pdb

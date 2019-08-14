@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Polyclinic.WEB.Models.SpecialityViewModel>
+
+@if (Model.Count() != 0)
+{
+    ViewBag.Title = "Выберите специальность";
+
+    IEnumerable<Polyclinic.WEB.Models.DoctorViewModel> doctors = ViewBag.Doctors;
+    int countOftake = 0;
+    int i = 0;
+    while ((Model.Count() - countOftake * 3) >= 3)
+    {
+        var items = Model.Skip(countOftake * 3).Take(3);
+        <div class="row HalfOfCol">
+            @foreach (var item in items)
+            {
+                if (i == 0)
+                {
+                    i++;
+                    <div class="col-md-3 col-sm-3 Specialities">
+                        @Html.ActionLink(item.Name, "ChooseDoctor", "Patient", new { id = item.Id }, new { @class = "FourthLink" })
+                        <div>
+                            Врачи: @doctors.Where(d => d.SpecialityId == item.Id).Count().ToString()
+                        </div>
+                    </div>
+                }
+                else if (i == 1)
+                {
+                    i++;
+                    <div class="col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1 Specialities">
+                        @Html.ActionLink(item.Name, "ChooseDoctor", "Patient", new { id = item.Id }, new { @class = "FourthLink" })
+                        <div>
+                            Врачи: @doctors.Where(d => d.SpecialityId == item.Id).Count().ToString()
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1 Specialities">
+                        @Html.ActionLink(item.Name, "ChooseDoctor", "Patient", new { id = item.Id }, new { @class = "FourthLink" })
+                        <div>
+                            Врачи: @doctors.Where(d => d.SpecialityId == item.Id).Count().ToString()
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        countOftake++;
+    }
+    if ((Model.Count() - countOftake * 3) != 0)
+    {
+        var items = Model.Skip(countOftake * 3);
+        <div class="row HalfOfCol">
+            @foreach (var item in items)
+            {
+                if (i == 0)
+                {
+                    i++;
+                    <div class="col-md-3 col-sm-3 Specialities">
+                        @Html.ActionLink(item.Name, "ChooseDoctor", "Patient", new { id = item.Id }, new { @class = "FourthLink" })
+                        <div>
+                            Врачи: @doctors.Where(d => d.SpecialityId == item.Id).Count().ToString()
+                        </div>
+                    </div>
+                }
+                else if (i == 1)
+                {
+                    i++;
+                    <div class="col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1 Specialities">
+                        @Html.ActionLink(item.Name, "ChooseDoctor", "Patient", new { id = item.Id }, new { @class = "FourthLink" })
+                        <div>
+                            Врачи: @doctors.Where(d => d.SpecialityId == item.Id).Count().ToString()
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1 Specialities">
+                        @Html.ActionLink(item.Name, "ChooseDoctor", "Patient", new { id = item.Id }, new { @class = "FourthLink" })
+                        <div>
+                            Врачи: @doctors.Where(d => d.SpecialityId == item.Id).Count().ToString()
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    }
+
+    <div style="height: 20px"></div>
+
+    @*foreach (var item in Model)
+    {
+        <div >
+            @Html.ActionLink(item.Name, "ChooseDoctor", "Patient", new { id = item.Id }, new { @class = "FirstLink" })
+        </div>
+
+        <br />
+    }*@
+}
+else
+{
+    ViewBag.Title = "Технические неполадки";
+    <h1>Заказ талонов недоступен по техническим причинам</h1>
+}

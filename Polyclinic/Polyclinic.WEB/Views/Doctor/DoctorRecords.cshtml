@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Polyclinic.WEB.Models.RecordViewModel>
+
+@{
+    ViewBag.Title = "Текущие заявки";
+    int i = 1;
+}
+
+@if (Model.Count() != 0)
+{
+    <div style="overflow-x:auto;">
+        <table class="table table-hover table-bordered table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Фио пациента</th>
+                    <th>Дата приёма</th>
+                    <th>Время приёма</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        @{
+                            <td>@i</td>
+                            i++;
+                        }
+                        <td>@item.PatientName</td>
+                        <td>@item.Date.ToShortDateString()</td>
+                        <td>@item.Time</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <h1>Заявки отсутствуют</h1>
+}

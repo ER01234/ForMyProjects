@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Polyclinic.WEB.Models.DoctorViewModel>
+
+@{
+    ViewBag.Title = "Врачи";
+    int i = 1;
+    IEnumerable<Polyclinic.WEB.Models.SpecialityViewModel> specialities = ViewBag.Specialities;
+    IEnumerable<Polyclinic.WEB.Models.UserViewModel> users = ViewBag.Users;
+}
+<div>
+    <div style="float: right">
+        @Html.ActionLink("Добавить врача", "AddDoctor", "Admin", new { @class = "FirstLink" })
+    </div>
+    <div>
+        @Html.ActionLink("Назад", "Administrating", "Admin", new { @class = "FirstLink" })
+    </div>
+</div>
+
+<br />
+
+@if (Model.Count() != 0)
+{
+    <div style="overflow-x:auto;">
+        <table class="table table-hover table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>ФИО</th>
+                    <th>Специальность</th>
+                    <th>Начало приёма</th>
+                    <th>Конец приёма</th>
+                    <th>Номер кабинета</th>
+                    <th>E-mail</th>
+                    <th>Логин</th>
+                    <th>Пароль</th>
+                    <th>Редактирование</th>
+                    <th>Удаление</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        @{
+                            <td>@i</td>
+                            i++;
+                        }
+                        <td>@item.Name @item.Surname @item.Patronymic</td>
+                        @{
+                            <td>@specialities.Where(s=>s.Id==item.SpecialityId).FirstOrDefault().Name</td>
+                        }
+                        <td>@item.TheBeginingOfReception</td>
+                        <td>@item.TheEndOfReception</td>
+                        <td>@item.Cabinet.ToString()</td>
+                        @{
+                            <td>@users.Where(u=>u.Login==item.Login).FirstOrDefault().Email</td>
+                        }
+                        <td>@item.Login</td>
+                        @{
+                            <td>@users.Where(u => u.Login == item.Login).FirstOrDefault().Password</td>
+                        }
+                        <td>@Html.ActionLink("Удалить", "DeleteDoctor", "Admin", new { id = item.Id }, new { @class = "SecondLink" })</td>
+                        <td>@Html.ActionLink("Редактировать", "EditDoctor", "Admin", new { id = item.Id }, new { @class = "SecondLink" })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <h1>Врачи отсутствуют</h1>
+}

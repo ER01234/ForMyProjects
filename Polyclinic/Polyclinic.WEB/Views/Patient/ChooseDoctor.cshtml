@@ -1,0 +1,112 @@
+﻿@model IEnumerable<Polyclinic.WEB.Models.DoctorViewModel>
+
+<div>
+    @Html.ActionLink("Назад", "ChooseSpeciality", "Patient", new { @class = "FirstLink" })
+</div>
+
+@if (Model.Count() != 0)
+{
+    ViewBag.Title = "Выберите врача";
+
+    int countOftake = 0;
+    int i = 0;
+    while ((Model.Count()-countOftake*3)>=3)
+    {
+        var items = Model.Skip(countOftake * 3).Take(3);
+        <div class="row HalfOfCol">
+            @foreach (var item in items)
+            {
+                if (i == 0)
+                {
+                    i++;
+                    <div class="col-md-3 col-sm-3 Doctors">
+                        @Html.ActionLink(item.Name + " " + item.Surname + " " + item.Patronymic, "ChooseTime", "Patient", new { id = item.Id }, new { @class = "ThirdLink" })
+                        <div>
+                            @item.Cabinet кабинет, @item.TheBeginingOfReception—@item.TheEndOfReception
+                        </div>
+                    </div>
+                }
+                else if (i == 1)
+                {
+                    i++;
+                    <div class="col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1 Doctors">
+                        @Html.ActionLink(item.Name + " " + item.Surname + " " + item.Patronymic, "ChooseTime", "Patient", new { id = item.Id }, new { @class = "ThirdLink" })
+                        <div>
+                            @item.Cabinet кабинет, @item.TheBeginingOfReception—@item.TheEndOfReception 
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    i = 0;
+                    <div class="col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1 Doctors">
+                        @Html.ActionLink(item.Name + " " + item.Surname + " " + item.Patronymic, "ChooseTime", "Patient", new { id = item.Id }, new { @class = "ThirdLink" })
+                        <div>
+                            @item.Cabinet кабинет, @item.TheBeginingOfReception—@item.TheEndOfReception
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        countOftake++;
+    }
+    if((Model.Count() - countOftake * 3)!=0)
+    {
+        var items = Model.Skip(countOftake * 3);
+        <div class="row HalfOfCol">
+            @foreach (var item in items)
+            {
+                if (i == 0)
+                {
+                    i++;
+                    <div class="col-md-3 col-sm-3 Doctors">
+                        @Html.ActionLink(item.Name + " " + item.Surname + " " + item.Patronymic, "ChooseTime", "Patient", new { id = item.Id }, new { @class = "ThirdLink" })
+                        <div>
+                            @item.Cabinet кабинет, @item.TheBeginingOfReception—@item.TheEndOfReception
+                        </div>
+                    </div>
+                }
+                else if (i == 1)
+                {
+                    i++;
+                    <div class="col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1 Doctors">
+                        @Html.ActionLink(item.Name + " " + item.Surname + " " + item.Patronymic, "ChooseTime", "Patient", new { id = item.Id }, new { @class = "ThirdLink" })
+                        <div>
+                            @item.Cabinet кабинет, @item.TheBeginingOfReception—@item.TheEndOfReception
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    i = 0;
+                    <div class="col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1 Doctors">
+                        @Html.ActionLink(item.Name + " " + item.Surname + " " + item.Patronymic, "ChooseTime", "Patient", new { id = item.Id }, new { @class = "ThirdLink" })
+                        <div>
+                            @item.Cabinet кабинет, @item.TheBeginingOfReception—@item.TheEndOfReception
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    }
+
+    <div style="height: 20px"></div>
+
+    @*foreach (var item in Model)
+    {
+        @Html.ActionLink(item.Name + " " + item.Surname + " " + item.Patronymic, "ChooseDoctor", "Patient", new { id = item.Id }, new { @class = "FirstLink" })
+        <div>
+            @ViewBag.Speciality @item.Cabinet кабинет
+        </div>
+
+        <br />
+    }*@
+}
+else
+{
+    ViewBag.Title = "Технические неполадки";
+    <h1>Врачи по данной специальности недоступны</h1>
+}
+<script>
+    
+</script>

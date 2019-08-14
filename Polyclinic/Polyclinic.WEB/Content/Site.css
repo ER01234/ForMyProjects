@@ -1,0 +1,146 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+h1, h2, h3, h4, h5, h6{
+    text-align: center;
+}
+input[type=button].FirstCancelBtn{
+    margin-left: 23px; 
+    width: 95.14px;
+}
+input[type=button].SecondCancelBtn{
+    margin-left: 86px; 
+    width: 95.14px;
+}
+input[type=button].ThirdCancelBtn{
+    margin-left: 70.5px; 
+    width: 95.14px;
+}
+input[type=submit].AcceptBtn{ 
+    width: 95.14px;
+}
+textarea{
+    resize: none;
+}
+a.AdminLink{
+    color: black;
+    font-size: 32px;
+}
+a.AdminLink:hover{
+    text-decoration: none;
+    color: grey;
+}
+a.FirstLink{
+    color: black;
+    font-size: 20px;
+}
+a.FirstLink:hover{
+    text-decoration: none;
+    color: grey;
+}
+a.SecondLink{
+    color: black;
+    font-size: 14px;
+}
+a.SecondLink:hover{
+    text-decoration: none;
+    color: grey;
+}
+a.ThirdLink{
+    color: black;
+    font-size: 20px;
+}
+a.ThirdLink:hover{
+    text-decoration: none;
+    color: #525252;
+}
+a.FourthLink{
+    color: black;
+    font-size: 25px;
+}
+a.FourthLink:hover{
+    text-decoration: none;
+    color: #525252;
+}
+a.FifthLink{
+    color: #36D200;
+}
+a.FifthLink:hover{
+    color: #3CE900;
+    text-decoration: none;
+}
+div.Doctors{
+    text-align: center;
+    height: 100px;
+    background-color: #E6E6E6;
+    margin-top: 20px;
+    padding-top: 10px;
+}
+div.Doctors:hover
+{
+    background-color: #DBDBDB;
+}
+div.Specialities{
+    text-align: center;
+    height: 100px;
+    background-color: #E6E6E6;
+    margin-top: 20px;
+    padding-top: 20px;
+}
+div.Specialities:hover
+{
+    background-color: #DBDBDB;
+}
+div.TimeSpans{
+    color: #36D200;
+    font-size: 20px;
+    text-align: center;
+    height: 100px;
+    background-color: #E6E6E6;
+    margin-top: 20px;
+    padding-top: 35px;
+}
+div.TimeSpans:hover
+{
+    background-color: #DBDBDB;
+}
+@media screen and (min-device-width: 768px)
+{
+    div.HalfOfCol{
+        padding-left: 90px;
+    }
+}
+@media screen and (device-width: 768px)
+{
+    div.Specialities, div.Doctors{
+        padding-top: 0px;
+    }
+}
+@media screen and (max-device-width: 767px)
+{
+    div.Specialities, div.Doctors, div.TimeSpans{
+        margin-right: 30px;
+        margin-left: 30px;
+    }
+}

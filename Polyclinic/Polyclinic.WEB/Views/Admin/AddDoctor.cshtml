@@ -1,0 +1,176 @@
+﻿@model Polyclinic.WEB.Models.DoctorViewModel
+
+@{
+    ViewBag.Title = "Добавление врача";
+}
+@if (ViewBag.Specialities.Items.Count == 0)
+{
+    <div>
+        @Html.ActionLink("Назад", "Doctors", "Admin", new { @class = "FirstLink" })
+    </div>
+    <h1>Невозвожно добавить врача, так как в базе данных отсутствуют специальности</h1>
+}
+else
+{
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal col-md-offset-3">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Patronymic, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Patronymic, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Patronymic, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SpecialityId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.SpecialityId, ViewBag.Specialities as SelectList, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SpecialityId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TheBeginingOfReception, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.TheBeginingOfReception, ViewBag.Time as SelectList, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TheBeginingOfReception, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TheEndOfReception, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.TheEndOfReception, ViewBag.Time2 as SelectList, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TheEndOfReception, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Cabinet, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Cabinet, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Cabinet, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Login, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div style="width: 280px;">                       
+                            <div style="float: right"><input type="button" value="G" class="btn btn-default" onclick="GenerateLogin()" /></div>
+                            <div style="width: 242px">@Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control" } })</div>
+                    </div>           
+                    @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })                   
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div style="width: 280px;">
+                        <div style="float: right"><input type="button" value="G" class="btn btn-default" onclick="GeneratePassword()" /></div>
+                        <div style="width: 242px">@Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })</div>
+                    </div>       
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Добавить" class="btn btn-default AcceptBtn" />
+                    <input type="button" value="Отмена" class="btn btn-default SecondCancelBtn" onclick="location.replace('@Url.RouteUrl(new { Controller = "Admin", Action = "Doctors" })')" />
+                </div>
+            </div>
+        </div>
+    }
+}
+<script>
+
+    function GenerateLogin(e)
+    {
+        var login = "";
+        var letterORdigit = 0;
+        var upperOrlower = 0;
+        var digit = 0;
+        var code = 0;
+        for(var i = 0; i < 6; i++)
+        {
+            letterORdigit = Math.floor(Math.random() * (2 - 1 + 1)) + 1;
+            if(letterORdigit==1)
+            {
+                upperOrlower = Math.floor(Math.random() * (2 - 1 + 1)) + 1;
+                if(upperOrlower==1)
+                {
+                    code = Math.floor(Math.random() * (122 - 97 + 1)) + 97;
+                    login += String.fromCharCode(code);
+                }
+                else
+                {
+                    code = Math.floor(Math.random() * (90 - 65 + 1)) + 65;
+                    login += String.fromCharCode(code);
+                }
+            }
+            else
+            {
+                digit = Math.floor(Math.random() * (9 - 0 + 1)) + 0;
+                login += digit.toString();
+            }
+        }
+        document.getElementById("Login").value = login;
+    }
+    function GeneratePassword(e) {
+        var password = "";
+        var letterORdigit = 0;
+        var upperOrlower = 0;
+        var digit = 0;
+        var code = 0;
+        for (var i = 0; i < 6; i++) {
+            letterORdigit = Math.floor(Math.random() * (2 - 1 + 1)) + 1;
+            if (letterORdigit == 1) {
+                upperOrlower = Math.floor(Math.random() * (2 - 1 + 1)) + 1;
+                if (upperOrlower == 1) {
+                    code = Math.floor(Math.random() * (122 - 97 + 1)) + 97;
+                    password += String.fromCharCode(code);
+                }
+                else {
+                    code = Math.floor(Math.random() * (90 - 65 + 1)) + 65;
+                    password += String.fromCharCode(code);
+                }
+            }
+            else {
+                digit = Math.floor(Math.random() * (9 - 0 + 1)) + 0;
+                password += digit.toString();
+            }
+        }
+        document.getElementById("Password").value = password;
+    }
+</script>

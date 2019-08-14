@@ -1,0 +1,261 @@
+﻿@model IEnumerable<Polyclinic.WEB.Models.RecordViewModel>
+
+@{
+    ViewBag.Title = "Выберите время записи";
+    Polyclinic.WEB.Models.DoctorViewModel Doctor = ViewBag.Doctor;
+    DateTime Beginning = Convert.ToDateTime(Doctor.TheBeginingOfReception);
+    DateTime End = Convert.ToDateTime(Doctor.TheEndOfReception);
+    TimeSpan Diff = End.Subtract(Beginning);
+    int CountOfRecords = Diff.Hours*4;
+
+    if (Diff.Minutes == 15)
+    {
+        CountOfRecords++;
+    }
+    else if(Diff.Minutes == 30)
+    {
+        CountOfRecords += 2;
+    }
+    else if(Diff.Minutes == 45)
+    {
+        CountOfRecords += 3;
+    }
+}
+
+<div>
+    @Html.ActionLink("Назад", "ChooseDoctor", "Patient", new { id = Doctor.SpecialityId }, new { @class = "FirstLink" })
+</div>
+
+@if(CountOfRecords==Model.Count())
+{
+    <h1>Нет доступных талонов</h1>
+}
+else
+{
+    int i = 0;
+    List<string> TimeSpans = new List<string>();
+    for(i = Beginning.Hour; i <= End.Hour; i++)
+    {
+        if(i==Beginning.Hour)
+        {
+            if(Beginning.Minute==0)
+            {
+                TimeSpans.Add(i.ToString() + ":00");
+                TimeSpans.Add(i.ToString() + ":15");
+                TimeSpans.Add(i.ToString() + ":30");
+                TimeSpans.Add(i.ToString() + ":45");
+            }
+            else if(Beginning.Minute==15)
+            {
+                TimeSpans.Add(i.ToString() + ":15");
+                TimeSpans.Add(i.ToString() + ":30");
+                TimeSpans.Add(i.ToString() + ":45");
+            }
+            else if(Beginning.Minute==30)
+            {
+                TimeSpans.Add(i.ToString() + ":30");
+                TimeSpans.Add(i.ToString() + ":45");
+            }
+            else
+            {
+                TimeSpans.Add(i.ToString() + ":45");
+            }
+        }
+        else if(i==End.Hour)
+        {
+            if (End.Minute == 15)
+            {
+                TimeSpans.Add(i.ToString() + ":00");
+                TimeSpans.Add(i.ToString() + ":15");
+            }
+            else if (End.Minute == 30)
+            {
+                TimeSpans.Add(i.ToString() + ":00");
+                TimeSpans.Add(i.ToString() + ":15");
+                TimeSpans.Add(i.ToString() + ":30");
+            }
+            else if(End.Minute == 45)
+            {
+                TimeSpans.Add(i.ToString() + ":00");
+                TimeSpans.Add(i.ToString() + ":15");
+                TimeSpans.Add(i.ToString() + ":30");
+                TimeSpans.Add(i.ToString() + ":45");
+            }
+        }
+        else
+        {
+            TimeSpans.Add(i.ToString() + ":00");
+            TimeSpans.Add(i.ToString() + ":15");
+            TimeSpans.Add(i.ToString() + ":30");
+            TimeSpans.Add(i.ToString() + ":45");
+        }
+    }
+
+    int countOftake = 0;
+    i = 0;
+    while ((TimeSpans.Count() - countOftake * 6) >= 6)
+    {
+        var items = TimeSpans.Skip(countOftake * 6).Take(6);
+        <div class="row HalfOfCol">
+            @foreach (var item in items)
+            {
+                if (i == 0)
+                {
+                    i++;
+                    if (Model.Where(m => m.Time==item).FirstOrDefault() == null)
+                    {
+                        <div class="col-md-1 col-sm-1 TimeSpans">@Html.ActionLink(@item, "AcknowledgeRecord", "Patient", new { time =item }, new { @class = "FifthLink" })</div>
+                    }
+                    else
+                    {
+                        <div style="color: red" class="col-md-1 col-sm-1 TimeSpans">@item</div>
+                    }
+                }
+                else if (i == 1)
+                {
+                    i++;
+                    if (Model.Where(m => m.Time == item).FirstOrDefault() == null)
+                    {
+                        <div class="col-md-1 col-sm-1 col-md-offset-1 col-sm-offset-1  TimeSpans">@Html.ActionLink(@item, "AcknowledgeRecord", "Patient", new { time = item }, new { @class = "FifthLink" })</div>
+                    }
+                    else
+                    {
+                        <div style="color: red" class="col-md-1 col-sm-1 col-md-offset-1 col-sm-offset-1  TimeSpans">@item</div>
+                    }
+                }
+                else if (i == 2)
+                {
+                    i++;
+                    if (Model.Where(m => m.Time == item).FirstOrDefault() == null)
+                    {
+                        <div class="col-md-1 col-md-offset-1 col-sm-offset-1  col-sm-1 TimeSpans">@Html.ActionLink(@item, "AcknowledgeRecord", "Patient", new { time = item }, new { @class = "FifthLink" })</div>
+                    }
+                    else
+                    {
+                        <div style="color: red" class="col-md-1 col-sm-1 col-md-offset-1 col-sm-offset-1  TimeSpans">@item</div>
+                    }
+                }
+                else if (i == 3)
+                {
+                    i++;
+                    if (Model.Where(m => m.Time == item).FirstOrDefault() == null)
+                    {
+                        <div class="col-md-1 col-sm-1 col-md-offset-1 col-sm-offset-1  TimeSpans">@Html.ActionLink(@item, "AcknowledgeRecord", "Patient", new { time = item }, new { @class = "FifthLink" })</div>
+                    }
+                    else
+                    {
+                        <div style="color: red" class="col-md-1 col-sm-1 col-md-offset-1 col-sm-offset-1  TimeSpans">@item</div>
+                    }
+                }
+                else if (i == 4)
+                {
+                    i++;
+                    if (Model.Where(m => m.Time == item).FirstOrDefault() == null)
+                    {
+                        <div class="col-md-1 col-sm-1 col-md-offset-1 col-sm-offset-1  TimeSpans">@Html.ActionLink(@item, "AcknowledgeRecord", "Patient", new { time = item }, new { @class = "FifthLink" })</div>
+                    }
+                    else
+                    {
+                        <div style="color: red" class="col-md-1 col-sm-1 col-md-offset-1 col-sm-offset-1  TimeSpans">@item</div>
+                    }
+                }
+                else
+                {
+                    i = 0;
+                    if (Model.Where(m => m.Time == item).FirstOrDefault() == null)
+                    {
+                        <div class="col-md-1 col-sm-1 col-md-offset-1 col-sm-offset-1  TimeSpans">@Html.ActionLink(@item, "AcknowledgeRecord", "Patient", new { time = item }, new { @class = "FifthLink" })</div>
+                    }
+                    else
+                    {
+                        <div style="color: red" class="col-md-1 col-sm-1 col-md-offset-1 col-sm-offset-1  TimeSpans">@item</div>
+                    }
+                }
+            }
+        </div>
+        countOftake++;
+    }
+    if ((TimeSpans.Count() - countOftake * 6) != 0)
+    {
+        var items = TimeSpans.Skip(countOftake * 6);
+        <div class="row HalfOfCol">
+            @foreach (var item in items)
+            {
+                if (i == 0)
+                {
+                    i++;
+                    if (Model.Where(m => m.Time == item).FirstOrDefault() == null)
+                    {
+                        <div class="col-md-1 col-sm-1 TimeSpans">@Html.ActionLink(@item, "AcknowledgeRecord", "Patient", new { time = item }, new { @class = "FifthLink" })</div>
+                    }
+                    else
+                    {
+                        <div style="color: red" class="col-md-1 col-sm-1 TimeSpans">@item</div>
+                    }
+                }
+                else if (i == 1)
+                {
+                    i++;
+                    if (Model.Where(m => m.Time == item).FirstOrDefault() == null)
+                    {
+                        <div class="col-md-1 col-sm-1 col-md-offset-1 col-sm-offset-1  TimeSpans">@Html.ActionLink(@item, "AcknowledgeRecord", "Patient", new { time = item }, new { @class = "FifthLink" })</div>
+                    }
+                    else
+                    {
+                        <div style="color: red" class="col-md-1 col-sm-1 col-md-offset-1 col-sm-offset-1  TimeSpans">@item</div>
+                    }
+                }
+                else if (i == 2)
+                {
+                    i++;
+                    if (Model.Where(m => m.Time == item).FirstOrDefault() == null)
+                    {
+                        <div class="col-md-1 col-sm-1 col-md-offset-1 col-sm-offset-1  TimeSpans">@Html.ActionLink(@item, "AcknowledgeRecord", "Patient", new { time = item }, new { @class = "FifthLink" })</div>
+                    }
+                    else
+                    {
+                        <div class="col-md-1 col-sm-1 col-md-offset-1 col-sm-offset-1  TimeSpans" style="color: red" >@item</div>
+                    }
+                }
+                else if (i == 3)
+                {
+                    i++;
+                    if (Model.Where(m => m.Time == item).FirstOrDefault() == null)
+                    {
+                        <div class="col-md-1 col-sm-1 col-md-offset-1 col-sm-offset-1  TimeSpans">@Html.ActionLink(@item, "AcknowledgeRecord", "Patient", new { time = item }, new { @class = "FifthLink" })</div>
+                    }
+                    else
+                    {
+                        <div class="col-md-1 col-sm-1 col-md-offset-1 col-sm-offset-1  TimeSpans" style="color: red">@item</div>
+                    }
+                }
+                else if (i == 4)
+                {
+                    i++;
+                    if (Model.Where(m => m.Time == item).FirstOrDefault() == null)
+                    {
+                        <div class="col-md-1 col-sm-1 col-md-offset-1 col-sm-offset-1  TimeSpans">@Html.ActionLink(@item, "AcknowledgeRecord", "Patient", new { time = item }, new { @class = "FifthLink" })</div>
+                    }
+                    else
+                    {
+                        <div class="col-md-1 col-sm-1 col-md-offset-1 col-sm-offset-1  TimeSpans" style="color: red">@item</div>
+                    }
+                }
+                else
+                {
+                    i = 0;
+                    if (Model.Where(m => m.Time == item).FirstOrDefault() == null)
+                    {
+                        <div class="col-md-1 col-sm-1 col-md-offset-1 col-sm-offset-1  TimeSpans">@Html.ActionLink(@item, "AcknowledgeRecord", "Patient", new { time = item }, new { @class = "FifthLink" })</div>
+                    }
+                    else
+                    {
+                        <div class="col-md-1 col-sm-1 col-md-offset-1 col-sm-offset-1  TimeSpans" style="color: red">@item</div>
+                    }
+                }
+            }
+        </div>
+    }
+
+    <div style="height: 20px"></div>
+}
